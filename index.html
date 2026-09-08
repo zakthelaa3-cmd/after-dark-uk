@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>After Dark UK — V1</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#1559d6,#7b2cff,#ff4fa3);color:#fff}
+button{font:inherit;font-weight:800;color:#fff;border:0;cursor:pointer}
+.app{width:100%;height:100dvh;max-width:1500px;margin:auto;padding:6px;display:flex;flex-direction:column;gap:5px}
+.card,.panel{background:rgba(7,20,65,.94);border:1px solid rgba(255,255,255,.35);border-radius:12px;box-shadow:0 4px 14px #0004}
+.top{display:grid;grid-template-columns:2fr repeat(4,1fr) 1.25fr;gap:5px;flex:0 0 58px}
+.top .card{padding:6px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.logo{font-size:22px;font-weight:1000;font-style:italic;white-space:nowrap}.stat{font-size:10px}.value{font-size:16px;margin:1px 0}
+.main{display:grid;grid-template-columns:185px 1fr 195px;gap:5px;min-height:0;flex:1}
+.side{padding:7px;min-height:0}.portrait{height:125px;border-radius:10px;background:linear-gradient(145deg,#0c183d,#1684ff);display:flex;align-items:end;justify-content:center;font-size:70px}
+.side h2{font-size:16px;margin:6px 0}.side p{font-size:12px;margin:4px 0}.notice{margin-top:6px;padding:6px;border-radius:9px;background:#ffffff18;text-align:center;font-size:10px}
+.story{padding:7px;display:flex;flex-direction:column;min-height:0}.story h2{font-size:15px;margin:2px 4px 5px}.storytext{background:#fff;color:#14214d;border-radius:11px;padding:10px;font-size:15px;line-height:1.28;flex:1;min-height:0;overflow:auto}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:5px;flex:0 0 auto}.action{padding:9px 6px;border-radius:11px;min-height:48px;font-size:13px;line-height:1.1;transition:.15s}.action:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.work{background:#13c95a}.casino{background:#9b27ff}.people{background:#168cff}.job{background:#ff3159}.crime{background:#e51d39}.money{background:#00b76b}
+.right{min-height:0;display:flex;flex-direction:column;gap:5px}.right .panel{padding:8px;margin:0}.right h3{font-size:13px;margin:0 0 5px}.task{padding:5px 0;border-bottom:1px solid #ffffff22;font-size:11px}
+.right .action{min-height:35px;padding:6px;font-size:11px}
+.bottom{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;flex:0 0 48px}.nav{padding:5px 2px;border-radius:10px;background:rgba(7,20,65,.95);border:1px solid #ffffff55;font-size:11px;line-height:1.05}.nav:hover{background:#173c91}
+@media(max-width:1000px){
+ .top{grid-template-columns:1.7fr repeat(4,1fr);}.top .card:last-child{display:none}
+ .main{grid-template-columns:1fr}.side,.right{display:none}
+ .story{min-height:0}
+}
+@media(max-width:600px){
+ .app{padding:4px;gap:4px}
+ .top{grid-template-columns:1.55fr repeat(4,1fr);gap:3px;flex-basis:48px}
+ .top .card{padding:3px;border-radius:9px}.logo{font-size:15px}.value{font-size:13px}.stat{font-size:8px}
+ .story{padding:4px;border-radius:10px}.story h2{font-size:12px;margin:1px 3px 3px}
+ .storytext{font-size:13px;line-height:1.2;padding:8px;border-radius:9px}
+ .actions{grid-template-columns:1fr 1fr;gap:4px;margin-top:4px}.action{min-height:43px;padding:7px 4px;font-size:11px;border-radius:9px}
+ .bottom{gap:3px;flex-basis:43px}.nav{font-size:9px;border-radius:8px;padding:4px 1px}
+}
+@media(max-width:380px){
+ .top{grid-template-columns:1.4fr repeat(4,1fr)}.logo{font-size:13px}.value{font-size:11px}.stat{font-size:7px}
+ .storytext{font-size:12px}.action{font-size:10px;min-height:39px}.nav{font-size:8px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="card logo">AFTER DARK UK</div>
+    <div class="card">💷<div class="value" id="money">£0</div><div class="stat">Money</div></div>
+    <div class="card">❤️<div class="value" id="health">100%</div><div class="stat">Health</div></div>
+    <div class="card">⚡<div class="value" id="energy">100%</div><div class="stat">Energy</div></div>
+    <div class="card">⭐<div class="value" id="rep">Neutral</div><div class="stat">Reputation</div></div>
+    <div class="card">📍<div class="value">Brixton</div><div class="stat">London • 16°C</div></div>
+  </div>
+
+  <div class="main">
+    <aside class="panel side">
+      <div class="portrait">🧑🏽‍🦱</div>
+      <h2>18 • Level 1</h2>
+      <p>🇬🇧 UK</p>
+      <p>💷 <b id="sideMoney">£0</b></p>
+      <p>❤️ <b id="sideHealth">100%</b></p>
+      <p>⚡ <b id="sideEnergy">100%</b></p>
+      <div class="notice">Start with nothing. Build your life.</div>
+    </aside>
+
+    <section class="panel story">
+      <h2>🤖 AI STORY</h2>
+      <div class="storytext" id="story">
+        You wake up in a small flat in Brixton. It's 7:30 AM and your phone has 5 missed calls.<br><br>
+        You've got <b>£0</b>, no job, and rent is due soon.<br><br><b>What do you do?</b>
+      </div>
+      <div class="actions" id="actions"></div>
+    </section>
+
+    <aside class="right">
+      <div class="panel"><h3>🗺️ Current Tasks</h3><div class="task">◯ Find a job</div><div class="task">◯ Make £100</div><div class="task">◯ Get a place to live</div></div>
+      <div class="panel"><h3>📱 Phone</h3><div id="phone">5 missed calls</div></div>
+      <div class="panel"><h3>🃏 Casino</h3><div>Random Blackjack available.</div></div>
+      <div class="panel"><h3>🎁 Daily Bonus</h3><button class="action work" style="width:100%;margin-top:8px" onclick="bonus()">Claim £10</button></div>
+    </aside>
+  </div>
+
+  <div class="bottom">
+    <button class="nav" onclick="home()">🏠<br>Home</button>
+    <button class="nav" onclick="explore()">🗺️<br>Explore</button>
+    <button class="nav" onclick="people()">👥<br>People</button>
+    <button class="nav" onclick="crime()">🎭<br>Crime</button>
+    <button class="nav" onclick="moneyMenu()">💷<br>Money</button>
+    <button class="nav" onclick="inventory()">🎒<br>Inventory</button>
+    <button class="nav" onclick="blackjack()">🃏<br>Casino</button>
+    <button class="nav" onclick="saveGame()">💾<br>Save</button>
+  </div>
+</div>
+
+<script>
+let s=JSON.parse(localStorage.getItem("adu-v1"))||{money:0,health:100,energy:100,rep:"Neutral",bonus:false};
+
+function update(){for(const [id,val] of [["money","£"+s.money],["health",s.health+"%"],["energy",s.energy+"%"],["rep",s.rep],["sideMoney","£"+s.money],["sideHealth",s.health+"%"],["sideEnergy",s.energy+"%"]])document.getElementById(id).textContent=val;localStorage.setItem("adu-v1",JSON.stringify(s))}
+function setStory(t,buttons){document.getElementById("story").innerHTML=t;document.getElementById("actions").innerHTML=buttons.map(b=>`<button class="action ${b.c}" onclick="${b.f}">${b.t}</button>`).join("");update()}
+function home(){setStory(`You're back in Brixton. The day is yours, but your wallet is still <b>£${s.money}</b>.<br><br><b>Choose your next move.</b>`,[
+{t:"💼 Work a Shift",c:"work",f:"workShift()"},{t:"🏠 Look for a Job",c:"job",f:"findJob()"},{t:"📱 Check My Phone",c:"people",f:"people()"},{t:"🃏 Visit the Casino",c:"casino",f:"blackjack()"}])}
+function workShift(){if(s.energy<20)return setStory("You're too exhausted to work another shift.",[{t:"⚡ Rest",c:"people",f:"rest()"},{t:"🏠 Home",c:"job",f:"home()"}]);s.money+=45;s.energy-=25;setStory(`You complete a shift and get paid <b>£45</b>. Your balance is now <b>£${s.money}</b>.`,[{t:"💼 Work Again",c:"work",f:"workShift()"},{t:"🗺️ Explore",c:"people",f:"explore()"},{t:"🏠 Home",c:"job",f:"home()"}])}
+function findJob(){setStory("A local shop needs someone for an evening shift. The pay is £55.",[{t:"✅ Take the Job",c:"work",f:"takeJob()"},{t:"❌ Decline",c:"job",f:"home()"}])}
+function takeJob(){s.money+=55;s.energy=Math.max(0,s.energy-30);s.rep="Hard-working";setStory("You finish the shift. The manager says you can come back tomorrow.",[{t:"💷 Check Money",c:"money",f:"moneyMenu()"},{t:"🏠 Go Home",c:"job",f:"home()"}])}
+function rest(){s.energy=Math.min(100,s.energy+40);setStory("You rest for a while and recover some energy.",[{t:"💼 Work a Shift",c:"work",f:"workShift()"},{t:"🗺️ Explore",c:"people",f:"explore()"}])}
+function explore(){setStory("Brixton is busy. You can visit several places.",[{t:"🏪 Shop",c:"money",f:"shop()"},{t:"🌃 Nightlife",c:"casino",f:"nightlife()"},{t:"🃏 Casino",c:"casino",f:"blackjack()"},{t:"🏠 Home",c:"job",f:"home()"}])}
+function people(){setStory("Your phone has messages from people you've met. One contact offers a legitimate side job.",[{t:"📱 Take the Side Job",c:"work",f:"sideJob()"},{t:"👋 Meet a Friend",c:"people",f:"friend()"},{t:"🏠 Ignore It",c:"job",f:"home()"}])}
+function sideJob(){s.money+=30;s.rep="Reliable";setStory("You complete a quick side job and earn £30.",[{t:"💼 Find More Work",c:"work",f:"findJob()"},{t:"🏠 Home",c:"job",f:"home()"}])}
+function friend(){s.energy=Math.max(0,s.energy-5);setStory("You meet a friend who warns you to be careful with quick-money offers.",[{t:"💼 Get a Proper Job",c:"work",f:"findJob()"},{t:"🃏 Go to the Casino",c:"casino",f:"blackjack()"}])}
+function crime(){setStory("A risky opportunity appears. This is a choice with consequences.",[{t:"⚠️ Take the Risk",c:"crime",f:"risky()"},{t:"🚶 Walk Away",c:"people",f:"home()"}])}
+function risky(){s.rep="Wanted";s.energy=Math.max(0,s.energy-15);setStory("The plan goes wrong. You escape, but you've attracted attention. Your reputation is now <b>Wanted</b>.",[{t:"🏠 Lay Low",c:"job",f:"home()"},{t:"💼 Find Legal Work",c:"work",f:"findJob()"}])}
+function moneyMenu(){setStory(`You have <b>£${s.money}</b>. Keep earning and decide how you spend it.`,[{t:"💼 Work",c:"work",f:"workShift()"},{t:"🛍️ Shop",c:"money",f:"shop()"},{t:"🃏 Gamble",c:"casino",f:"blackjack()"}])}
+function shop(){if(s.money<20)return setStory("You can't afford anything useful yet.",[{t:"💼 Work",c:"work",f:"workShift()"},{t:"🏠 Home",c:"job",f:"home()"}]);s.money-=20;setStory("You spend £20 on food and supplies. Health and energy get a small boost.",[{t:"💼 Work",c:"work",f:"workShift()"},{t:"🏠 Home",c:"job",f:"home()"}]);s.health=Math.min(100,s.health+5);s.energy=Math.min(100,s.energy+10)}
+function nightlife(){setStory("Music, lights and crowds fill the night. You hear about a big Blackjack table.",[{t:"🃏 Play Blackjack",c:"casino",f:"blackjack()"},{t:"🚶 Leave",c:"job",f:"home()"}])}
+function blackjack(){if(s.money<10)return setStory("The table minimum is £10. You need more money first.",[{t:"💼 Work a Shift",c:"work",f:"workShift()"},{t:"🏠 Leave Casino",c:"job",f:"home()"}]);let bet=Math.min(25,s.money);let win=Math.random()<.48;if(win){s.money+=bet;setStory(`🃏 BLACKJACK<br><br>You bet £${bet} and <b>win £${bet}</b>!`,[{t:"🃏 Play Again",c:"casino",f:"blackjack()"},{t:"💷 Cash Out",c:"money",f:"moneyMenu()"}])}else{s.money-=bet;setStory(`🃏 BLACKJACK<br><br>You bet £${bet} and lose it. Balance: <b>£${s.money}</b>.`,[{t:"🃏 Try Again",c:"casino",f:"blackjack()"},{t:"💼 Earn Money",c:"work",f:"workShift()"}])}}
+function bonus(){if(s.bonus)return setStory("You've already claimed today's bonus.",[{t:"🏠 Home",c:"job",f:"home()"}]);s.money+=10;s.bonus=true;setStory("🎁 Daily bonus claimed: <b>£10</b> added to your balance.",[{t:"💼 Work",c:"work",f:"workShift()"},{t:"🃏 Casino",c:"casino",f:"blackjack()"}])}
+function inventory(){setStory("🎒 Inventory<br><br>Your basic phone and clothes are with you. More items can be collected as the story develops.",[{t:"🏠 Home",c:"job",f:"home()"}])}
+function saveGame(){localStorage.setItem("adu-v1",JSON.stringify(s));setStory("💾 Game saved on this device.",[{t:"▶ Continue",c:"work",f:"home()"}])}
+home();
+</script>
+</body>
+</html>
